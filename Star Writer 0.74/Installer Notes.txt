@@ -1,0 +1,61 @@
+STAR WRITER 0.74 - BETA TEST INSTALLER
+
+HOW TO INSTALL FROM GITHUB
+
+1. Clone the complete repository with GitHub Desktop and wait for Git LFS to
+   finish downloading all six payload parts.
+2. Open the Star Writer 0.74 folder.
+3. Double-click Install-Star-Writer-0.74.cmd.
+4. The launcher will combine and verify the payload, then open the installer.
+5. Read the license agreement, click Agree, choose the installation folder,
+   and click Install.
+
+WHY THERE ARE TWO INSTALLATION FILES
+
+The included Qwen2.5-14B model and runtime are approximately 10 GB after
+compression. Windows will not launch an executable this large, and GitHub LFS
+will not accept a single file of this size on Free or Pro plans. The small EXE
+is the installer program. The six payload parts contain the offline
+application, model, runtime, and prerequisites. The launcher combines and
+verifies those parts before the installer extracts anything.
+
+VERSION 0.74 CHANGES
+
+- Settings opens in Basic mode with Display and Background Images visible.
+- The Advanced button reveals Computer Access, AI Model Selection, and
+  Adaptive Learning controls. The choice is saved with the user's profile.
+- Feature Suggestions uses an HTTPS relay and does not include an email or
+  SMTP password in the installer.
+
+SYSTEM GUIDANCE
+
+- 64-bit Windows 10 version 1809 or later, or Windows 11
+- 16 GB RAM minimum; 24 GB or more recommended
+- Approximately 35 GB free during installation
+- More RAM and a supported GPU generally improve generation speed
+
+SECURITY
+
+- Computer Access and file read/write permissions default to off.
+- Personal profiles, credentials, logs, Story Memory, and configuration are
+  not included in this public payload.
+- Feature Suggestions are transmitted over HTTPS through Formspree to
+  billy@billystarbuck.com. No mailbox password is distributed. Formspree may
+  retain submissions for up to 30 days on its free plan.
+- Star Writer update packages require an official Ed25519 signature.
+- The installer is timestamped and Authenticode-signed with Billy Starbuck's
+  self-issued code-signing certificate. This protects local build integrity,
+  but other computers may still warn because the certificate is not issued by
+  a public certificate authority and has not built SmartScreen reputation.
+
+FILES
+
+- Star Writer Installer.exe
+- Star Writer Installer.payload.zip.part01 through .part06
+- Install-Star-Writer-0.74.cmd
+- Install-Star-Writer-0.74.ps1
+- SHA256SUMS.txt
+
+Do not rename or separate the EXE, scripts, or payload parts before
+installation. After a successful reconstruction, the generated payload ZIP
+may be deleted to recover about 10 GB.
