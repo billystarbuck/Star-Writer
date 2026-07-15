@@ -5,7 +5,6 @@ param(
 $ErrorActionPreference = "Stop"
 
 $sourceDir = Split-Path -Parent $PSCommandPath
-$installerPath = Join-Path $sourceDir "Star Writer Installer.exe"
 $payloadPath = Join-Path $sourceDir "Star Writer Installer.payload.zip"
 $temporaryPath = "$payloadPath.assembling"
 $expectedPayloadBytes = 10715530468
@@ -16,22 +15,39 @@ function Get-Sha256([string]$Path) {
     return (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToUpperInvariant()
 }
 
-if (-not (Test-Path -LiteralPath $installerPath)) {
-    throw "Star Writer Installer.exe is missing. Download the complete release folder and try again."
+$installerPath = $null
+foreach ($installerName in @("Star Writer Installer.exe", "Star.Writer.Installer.exe")) {
+    $candidate = Join-Path $sourceDir $installerName
+    if (Test-Path -LiteralPath $candidate) {
+        $installerPath = $candidate
+        break
+    }
+}
+
+if (-not $installerPath) {
+    throw "The Star Writer installer EXE is missing. Download every required release asset into this folder and try again."
 }
 
 if ((Get-Sha256 $installerPath) -ne $expectedInstallerHash) {
     throw "The installer EXE failed its security check. Delete this download and obtain a fresh copy from the official Star Writer repository."
 }
 
-$parts = @(Get-ChildItem -LiteralPath $sourceDir -File -Filter "Star Writer Installer.payload.zip.part*" | Sort-Object Name)
-if ($parts.Count -ne 6) {
-    throw "Six payload parts are required, but $($parts.Count) were found. Let GitHub Desktop finish the Git LFS download and try again."
+$parts = $null
+foreach ($partPattern in @("Star Writer Installer.payload.zip.part*", "Star.Writer.Installer.payload.zip.part*")) {
+    $candidateParts = @(Get-ChildItem -LiteralPath $sourceDir -File -Filter $partPattern | Sort-Object Name)
+    if ($candidateParts.Count -eq 6) {
+        $parts = $candidateParts
+        break
+    }
+}
+
+if (-not $parts) {
+    throw "Six payload parts are required. Download part01 through part06 from the Star Writer 0.74 Beta release into this folder and try again."
 }
 
 $partsBytes = ($parts | Measure-Object -Property Length -Sum).Sum
 if ($partsBytes -ne $expectedPayloadBytes) {
-    throw "The payload parts are incomplete. Expected $expectedPayloadBytes bytes but found $partsBytes bytes. Run Git LFS Pull in GitHub Desktop and try again."
+    throw "The payload parts are incomplete. Expected $expectedPayloadBytes bytes but found $partsBytes bytes. Download the six release assets again and try again."
 }
 
 if (Test-Path -LiteralPath $payloadPath) {
@@ -81,7 +97,7 @@ else {
 
     if ((Get-Item -LiteralPath $temporaryPath).Length -ne $expectedPayloadBytes -or (Get-Sha256 $temporaryPath) -ne $expectedPayloadHash) {
         Remove-Item -LiteralPath $temporaryPath -Force -ErrorAction SilentlyContinue
-        throw "The reconstructed payload failed its security check. Run Git LFS Pull and try again."
+        throw "The reconstructed payload failed its security check. Download the six release assets again and try again."
     }
 
     Move-Item -LiteralPath $temporaryPath -Destination $payloadPath
