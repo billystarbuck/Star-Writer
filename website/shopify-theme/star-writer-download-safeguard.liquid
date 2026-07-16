@@ -1,0 +1,23 @@
+{% comment %}
+  Installed immediately before </body> in the active Shopify theme's
+  layout/theme.liquid file. This corrects stale cached page copies without
+  affecting any other page or link.
+{% endcomment %}
+{% if request.path == '/pages/free-ai-writing-tool' %}
+  <script>
+    (function ensureStarWriterDownloaderLink() {
+      const downloadUrl = 'https://cdn.shopify.com/s/files/1/0790/8291/4023/files/Star_Writer_Beta_Downloader.exe?v=1784163834';
+      const updateDownloadLink = () => {
+        document.querySelectorAll('a').forEach((link) => {
+          if (link.textContent.trim() === 'Download Star Writer 0.74 Beta') {
+            link.href = downloadUrl;
+          }
+        });
+      };
+
+      document.addEventListener('DOMContentLoaded', updateDownloadLink);
+      document.addEventListener('shopify:section:load', updateDownloadLink);
+      updateDownloadLink();
+    })();
+  </script>
+{% endif %}
