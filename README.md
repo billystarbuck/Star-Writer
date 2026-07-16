@@ -4,7 +4,15 @@ Star Writer is a local AI-assisted writing program for Windows. Version 0.74 inc
 
 This is beta software. Back up important writing before testing it and report problems through the **Feature Suggestions** option inside Star Writer.
 
-## Download with GitHub Desktop
+## Recommended Download
+
+Download and run the signed [Star Writer Beta Downloader](https://github.com/billystarbuck/Star-Writer/releases/download/v0.74-beta/Star.Writer.Beta.Downloader.exe).
+
+The downloader retrieves all eleven required Release assets, resumes interrupted downloads, verifies every file with SHA-256, and opens the installer preparation launcher automatically. The complete download is approximately 10 GB.
+
+The public download page is available at [Billystarbuck.com](https://billystarbuck.com/pages/free-ai-writing-tool).
+
+## Manual Git LFS Download
 
 The AI payload is stored with Git Large File Storage (Git LFS). GitHub Desktop supports Git LFS.
 
