@@ -6,11 +6,11 @@
 {% if request.path == '/pages/free-ai-writing-tool' %}
   <script>
     (function ensureStarWriterDownloaderLink() {
-      const downloadUrl = 'https://cdn.shopify.com/s/files/1/0790/8291/4023/files/Star_Writer_Beta_Downloader.exe?v=1784163834';
+      const downloadUrl = 'https://github.com/billystarbuck/Star-Writer/releases/download/v0.76-beta/Star.Writer.Beta.Downloader.exe';
       const liteDownloadUrl = 'https://github.com/billystarbuck/Star-Writer/releases/download/v0.76-lite-beta/Star.Writer.Lite.Beta.Downloader.exe';
       const updateDownloadLink = () => {
         document.querySelectorAll('a').forEach((link) => {
-          if (link.textContent.trim() === 'Download Star Writer 0.74 Beta') {
+          if (link.textContent.trim() === 'Download Star Writer 0.76 Beta') {
             link.href = downloadUrl;
           }
           if (link.textContent.trim() === 'Download Star Writer Lite 0.76 Beta') {
