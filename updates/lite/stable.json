@@ -1,0 +1,20 @@
+{
+  "format": "star-writer-online-update-v1",
+  "product": "Star Writer Lite",
+  "channel": "stable",
+  "version": "0.76.2",
+  "minimum_supported_version": "0.76.2",
+  "package_type": "signed-update-zip",
+  "download_url": "https://github.com/billystarbuck/Star-Writer/releases/download/v0.76.2-lite-beta/Star.Writer.Lite.Update.0.76.2.zip",
+  "sha256": "5081e5a45eca82d163494242b883e04e0e0be0e530d7d746ab9b81ce9002ebe1",
+  "file_size": 118382,
+  "mandatory": false,
+  "release_notes": [
+    "Prevents Star Writer Lite from accepting updates made for the full Star Writer edition.",
+    "Uses a separate Lite update-signing key and permanent update channel.",
+    "Improves startup checks and provides a readable repair diagnostic when files or drives are unavailable.",
+    "Keeps the CUDA compatibility fallback introduced in 0.76.1."
+  ],
+  "release_notes_url": "https://github.com/billystarbuck/Star-Writer/releases/tag/v0.76.2-lite-beta",
+  "manifest_signature": "zZT/B4aFWeYj5gb15iY009AGXK+wvJRUB7EJiSqVdvpfic8HKQzR5sl7mQFhYZplkt0VrSbmcT5bDlLjLqeQBg=="
+}
