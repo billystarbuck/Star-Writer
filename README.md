@@ -12,6 +12,16 @@ The downloader retrieves all eleven required Release assets, resumes interrupted
 
 The public download page is available at [Billystarbuck.com](https://billystarbuck.com/pages/free-ai-writing-tool).
 
+## Star Writer Lite 0.76 Beta
+
+Star Writer Lite is the lower-resource edition. It uses the included **Qwen2.5-7B Q4_K_M** model with a 4,096-token working context and installs separately from the full edition.
+
+Download and run the signed [Star Writer Lite Beta Downloader](https://github.com/billystarbuck/Star-Writer/releases/download/v0.76-lite-beta/Star.Writer.Lite.Beta.Downloader.exe).
+
+The Lite downloader retrieves its eleven required GitHub Release assets, resumes interrupted downloads, verifies every file with SHA-256, and launches the installer preparation tool. The complete Lite download is approximately 6.6 GB. Allow approximately 18 GB of free space while downloading, reconstructing, and installing it.
+
+The [Star Writer Lite 0.76 Beta Release](https://github.com/billystarbuck/Star-Writer/releases/tag/v0.76-lite-beta) contains the downloader, installer, verification files, and six payload segments. The Release assets are downloaded directly and do not require Git LFS or a GitHub account.
+
 ## Manual Git LFS Download
 
 The AI payload is stored with Git Large File Storage (Git LFS). GitHub Desktop supports Git LFS.
