@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 [assembly: AssemblyTitle("Star Writer Lite Beta Downloader")]
-[assembly: AssemblyDescription("Downloads, verifies, and launches the Star Writer Lite 0.76.2 Beta installer.")]
+[assembly: AssemblyDescription("Downloads, verifies, and launches the Star Writer Lite 0.77 Beta installer.")]
 [assembly: AssemblyCompany("Billy Starbuck")]
 [assembly: AssemblyProduct("Star Writer Lite")]
 [assembly: AssemblyCopyright("Copyright 2026 Billy Starbuck")]
-[assembly: AssemblyVersion("0.76.2.0")]
-[assembly: AssemblyFileVersion("0.76.2.0")]
+[assembly: AssemblyVersion("0.77.0.0")]
+[assembly: AssemblyFileVersion("0.77.0.0")]
 
 namespace StarWriterLiteBetaDownloader
 {
@@ -60,32 +60,34 @@ namespace StarWriterLiteBetaDownloader
         private static readonly Color Muted = Color.FromArgb(91, 108, 126);
 
         private const string ReleaseBase =
-            "https://github.com/billystarbuck/Star-Writer/releases/download/v0.76.2-lite-beta/";
+            "https://github.com/billystarbuck/Star-Writer/releases/download/v0.77-lite-beta/";
 
         private readonly DownloadAsset[] assets = new DownloadAsset[]
         {
-            new DownloadAsset("Star.Writer.Lite.Installer.exe", 64704L,
-                "BE4B7AE2E015C0F63DAE9DDDC3CD8EBFF2D5DE5850A0265970AC48A98FEC5C08"),
-            new DownloadAsset("Install-Star-Writer-Lite-0.76.2.cmd", 314L,
-                "8F887726BBEC18D48F5D76C8710EFA100F7DF8F058834B2270FC8F0898033CDB"),
-            new DownloadAsset("Install-Star-Writer-Lite-0.76.2.ps1", 5402L,
-                "EB805CFB525DEDA775FE97A54FE72B36F4996B15D28083D844B03A03A4F9D108"),
-            new DownloadAsset("SHA256SUMS.txt", 1180L,
-                "2F2871755627514EC5201D43869ACA25BE56E547C7B45046D88958E1543C7513"),
-            new DownloadAsset("Installer.Notes.txt", 2922L,
-                "EDA786E999A6BA4B5D54CA284B4D551D554B3946D1FBDAC6997BAE32153B32A2"),
+            new DownloadAsset("Star.Writer.Lite.Installer.exe", 64432L,
+                "B8258FA5AE365763464D77EF37551C198662419718DA54EB4950A854298155DE"),
+            new DownloadAsset("Install-Star-Writer-Lite-0.77.cmd", 310L,
+                "88C91F746D42657C33EB95167B4747D70604869E791E91EE3B91D34EFEBE40BE"),
+            new DownloadAsset("Install-Star-Writer-Lite-0.77.ps1", 5517L,
+                "19198BC45033D2CE2451235E0CF375969B300071E67A55D15702E4AE80F5F40C"),
+            new DownloadAsset("SHA256SUMS.txt", 1178L,
+                "8E648A19136A58A9D540FDDF671D71BE9C212ACE9F620C3C345448FAD56791A9"),
+            new DownloadAsset("Installer.Notes.txt", 2797L,
+                "40F88392EC970D360A210A2D2BE72E7E1E7C055DEA05291A178FB5786F4729C1"),
             new DownloadAsset("Star.Writer.Lite.Installer.payload.zip.part01", 1088693400L,
-                "41575D0C12FF40A41B433CD5A8C45BE021B04C56397BF07F7394A11BDCD1DDDF"),
+                "EE911456E8086306CD1424EE10D0863750110EC6ADCE3F713ACF43948E0FEF93"),
             new DownloadAsset("Star.Writer.Lite.Installer.payload.zip.part02", 1088693400L,
-                "DC081142F147A2EEE9207C59231D4918F6877A1B4E9F16EAE80992739DA53E8C"),
+                "732A35659CFAF139B88A456807FCAF0971AEA846D2F376C95BF89278576A1A40"),
             new DownloadAsset("Star.Writer.Lite.Installer.payload.zip.part03", 1088693400L,
-                "60C5C3917F1B331B891875F67D16D90F4EB482337DE17E8A4CE9ADED06CC89E9"),
+                "8F7218BE696379E182AF618B5A9DA8A10CC36F739D69564C6AD0E96DEAEB04A0"),
             new DownloadAsset("Star.Writer.Lite.Installer.payload.zip.part04", 1088693400L,
-                "8B087C188CFC566B00AC645E7548BB982B93DB5D215CBD217383F4954BD21EC9"),
+                "B7127758A7FE88E19D2B75F1C44E5BB89671EFE50D1096750A2E4584D6290657"),
             new DownloadAsset("Star.Writer.Lite.Installer.payload.zip.part05", 1088693400L,
-                "B5B263CD0C703A3E31F5EFDFEB15FDEA4A2E20F5845344DF94F5D6DF438312F5"),
-            new DownloadAsset("Star.Writer.Lite.Installer.payload.zip.part06", 1088690549L,
-                "D5C4103BC6B3AE21715DB83E8AD451E3D44CBB5916C670AD03FA67541E2ACD90")
+                "CCD927BF1BE378F0C9A7829A8FC67658D30BC6B2382351C42E50C65D381D62EC"),
+            new DownloadAsset("Star.Writer.Lite.Installer.payload.zip.part06", 1088693400L,
+                "54B4810D078B3931B0AA0DF83CA86FB1572583A4529144A6696CA77E186194CB"),
+            new DownloadAsset("Star.Writer.Lite.Installer.payload.zip.part07", 57502442L,
+                "156942839954B7812F271CFE498B0883721A6D2BFD9AFC96C3B0D271BEC7D6ED")
         };
 
         private readonly Label statusLabel;
@@ -135,7 +137,7 @@ namespace StarWriterLiteBetaDownloader
 
             Label subtitle = new Label();
             subtitle.AutoSize = true;
-            subtitle.Text = "0.76.2 Beta Downloader";
+            subtitle.Text = "0.77 Beta Downloader";
             subtitle.ForeColor = Gold;
             subtitle.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             subtitle.Location = new Point(31, 69);
@@ -177,7 +179,7 @@ namespace StarWriterLiteBetaDownloader
             folderBox.Text = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
                 "Downloads",
-                "Star Writer Lite 0.76.2 Beta");
+                "Star Writer Lite 0.77 Beta");
             Controls.Add(folderBox);
 
             browseButton = CreateButton("Change Folder", Navy, Color.White, new Size(105, 31));
@@ -271,7 +273,7 @@ namespace StarWriterLiteBetaDownloader
                 dialog.SelectedPath = folderBox.Text;
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    folderBox.Text = Path.Combine(dialog.SelectedPath, "Star Writer Lite 0.76.2 Beta");
+                    folderBox.Text = Path.Combine(dialog.SelectedPath, "Star Writer Lite 0.77 Beta");
                 }
             }
         }
@@ -308,12 +310,12 @@ namespace StarWriterLiteBetaDownloader
 
                 MessageBox.Show(
                     this,
-                    "The Star Writer Lite 0.76.2 Beta download is complete and verified. The installer will now open.",
+                    "The Star Writer Lite 0.77 Beta download is complete and verified. The installer will now open.",
                     "Star Writer Lite Download Complete",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
-                string launcher = Path.Combine(folderBox.Text, "Install-Star-Writer-Lite-0.76.2.cmd");
+                string launcher = Path.Combine(folderBox.Text, "Install-Star-Writer-Lite-0.77.cmd");
                 Process.Start(new ProcessStartInfo(launcher)
                 {
                     WorkingDirectory = folderBox.Text,
@@ -418,7 +420,7 @@ namespace StarWriterLiteBetaDownloader
             using (HttpClient client = new HttpClient(handler))
             {
                 client.Timeout = TimeSpan.FromMilliseconds(Timeout.Infinite);
-                client.DefaultRequestHeaders.UserAgent.ParseAdd("Star-Writer-Lite-Beta-Downloader/0.76.2");
+                client.DefaultRequestHeaders.UserAgent.ParseAdd("Star-Writer-Lite-Beta-Downloader/0.77");
 
                 for (int index = 0; index < assets.Length; index++)
                 {

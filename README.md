@@ -14,15 +14,15 @@ The [Star Writer 0.77 Beta Release](https://github.com/billystarbuck/Star-Writer
 
 The public download page is available at [Billystarbuck.com](https://billystarbuck.com/pages/free-ai-writing-tool).
 
-## Star Writer Lite 0.76.1 Beta
+## Star Writer Lite 0.77 Beta
 
 Star Writer Lite is the lower-resource edition. It uses the included **Qwen2.5-7B Q4_K_M** model with a 4,096-token working context and installs separately from the full edition.
 
-Download and run the signed [Star Writer Lite Beta Downloader](https://github.com/billystarbuck/Star-Writer/releases/download/v0.76.1-lite-beta/Star.Writer.Lite.Beta.Downloader.exe).
+Download and run the signed [Star Writer Lite Beta Downloader](https://github.com/billystarbuck/Star-Writer/releases/download/v0.77-lite-beta/Star.Writer.Lite.Beta.Downloader.exe).
 
-The Lite downloader retrieves its eleven required GitHub Release assets, resumes interrupted downloads, verifies every file with SHA-256, and launches the installer preparation tool. The complete Lite download is approximately 6.6 GB. Allow approximately 18 GB of free space while downloading, reconstructing, and installing it.
+The Lite downloader retrieves twelve GitHub Release assets, resumes interrupted downloads, verifies each file with SHA-256, and launches the installer preparation tool. The complete Lite download is approximately 6.6 GB. Allow approximately 18 GB of free space while downloading, reconstructing, and installing it.
 
-The [Star Writer Lite 0.76.1 Beta Release](https://github.com/billystarbuck/Star-Writer/releases/tag/v0.76.1-lite-beta) contains the downloader, installer, verification files, and six payload segments. Version 0.76.1 automatically falls back to CPU compatibility mode when NVIDIA CUDA/PTX acceleration is not supported. The Release assets are downloaded directly and do not require Git LFS or a GitHub account.
+The [Star Writer Lite 0.77 Beta Release](https://github.com/billystarbuck/Star-Writer/releases/tag/v0.77-lite-beta) contains the downloader, installer, verification files, and seven payload segments. Version 0.77 adds a guarded Uninstall option with separate choices to keep or erase Story Memory. The downloader fetches the Release assets without requiring a GitHub account.
 
 ## Manual Release Download
 
