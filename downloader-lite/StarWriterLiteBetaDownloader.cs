@@ -62,18 +62,23 @@ namespace StarWriterLiteBetaDownloader
         private const string ReleaseBase =
             "https://github.com/billystarbuck/Star-Writer/releases/download/v0.77-lite-beta/";
 
+        private const string PayloadFileName = "Star Writer Lite Installer.payload.zip";
+        private const long PayloadSize = 6491316257L;
+        private const string PayloadSha256 =
+            "8892DB710DF84075FD30DB6FF79F8278D58AA7FACB4F50DC3A1786E22BD6142F";
+
         private readonly DownloadAsset[] assets = new DownloadAsset[]
         {
-            new DownloadAsset("Star.Writer.Lite.Installer.exe", 64432L,
-                "B8258FA5AE365763464D77EF37551C198662419718DA54EB4950A854298155DE"),
+            new DownloadAsset("Star.Writer.Lite.Installer.exe", 64704L,
+                "F996C632B449555BA6C0F3E4CC78DFFE77F4645026D57AB7BBD2ADBF5059F291"),
             new DownloadAsset("Install-Star-Writer-Lite-0.77.cmd", 310L,
                 "88C91F746D42657C33EB95167B4747D70604869E791E91EE3B91D34EFEBE40BE"),
             new DownloadAsset("Install-Star-Writer-Lite-0.77.ps1", 5517L,
-                "6E7F0EDFA43671627827DFDF1876BF2C09847E7419AE0E0882718473BE7CA7B6"),
+                "7AEC4FE064AD939F9425DEDE04F182AC86A2B3D91321579CBE32B22071CE463D"),
             new DownloadAsset("SHA256SUMS.txt", 1178L,
-                "DB22532FA4A981485376C2A4F8BD9689430F9BACAA529AC2DBF8DAE17625604E"),
-            new DownloadAsset("Installer.Notes.txt", 2797L,
-                "40F88392EC970D360A210A2D2BE72E7E1E7C055DEA05291A178FB5786F4729C1"),
+                "72ACA6515B0FA675F48C9312B0361B66B2737180E6EC82A2114D802E26396902"),
+            new DownloadAsset("Installer.Notes.txt", 3096L,
+                "5975D5A1863B639E2ADBE4CD71D4C825766E64C20E859F4C8B71F7510E16E1AF"),
             new DownloadAsset("Star.Writer.Lite.Installer.payload.zip.part01", 1000000000L,
                 "D024DC7DBF264407084B28EBDD2C8156993E045760799E58BD61C7853EA021B5"),
             new DownloadAsset("Star.Writer.Lite.Installer.payload.zip.part02", 1000000000L,
@@ -306,17 +311,13 @@ namespace StarWriterLiteBetaDownloader
 
                 UpdateProgress(totalBytes);
                 statusLabel.Text = "Complete. Every file passed verification.";
-                detailLabel.Text = "Opening the Star Writer Lite installer preparation window...";
+                detailLabel.Text = "Preparing the installer. This can take several minutes; progress will remain visible.";
 
-                MessageBox.Show(
-                    this,
-                    "The Star Writer Lite 0.77 Beta download is complete and verified. The installer will now open.",
-                    "Star Writer Lite Download Complete",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                await PreparePayloadAsync(cancellation.Token);
 
-                string launcher = Path.Combine(folderBox.Text, "Install-Star-Writer-Lite-0.77.cmd");
-                Process.Start(new ProcessStartInfo(launcher)
+                statusLabel.Text = "Installer ready.";
+                detailLabel.Text = "Opening the Star Writer Lite installer...";
+                Process.Start(new ProcessStartInfo(Path.Combine(folderBox.Text, "Star.Writer.Lite.Installer.exe"))
                 {
                     WorkingDirectory = folderBox.Text,
                     UseShellExecute = true
@@ -348,6 +349,109 @@ namespace StarWriterLiteBetaDownloader
                     cancellation = null;
                 }
             }
+        }
+
+        private async Task PreparePayloadAsync(CancellationToken token)
+        {
+            string payloadPath = Path.Combine(folderBox.Text, PayloadFileName);
+            string temporaryPath = payloadPath + ".assembling";
+
+            if (File.Exists(payloadPath))
+            {
+                FileInfo existing = new FileInfo(payloadPath);
+                if (existing.Length == PayloadSize)
+                {
+                    statusLabel.Text = "Checking the prepared installer...";
+                    detailLabel.Text = "Verifying the existing installer payload before opening it.";
+                    string existingHash = await ComputeSha256Async(payloadPath, token);
+                    if (string.Equals(existingHash, PayloadSha256, StringComparison.OrdinalIgnoreCase))
+                    {
+                        UpdatePreparationProgress(PayloadSize, PayloadSize);
+                        return;
+                    }
+                }
+                File.Delete(payloadPath);
+            }
+
+            if (File.Exists(temporaryPath))
+            {
+                File.Delete(temporaryPath);
+            }
+
+            statusLabel.Text = "Preparing the Star Writer Lite installer...";
+            detailLabel.Text = "Combining the verified download parts. You can continue using your computer.";
+            UpdatePreparationProgress(0L, PayloadSize);
+
+            byte[] buffer = new byte[8 * 1024 * 1024];
+            long written = 0L;
+            try
+            {
+                using (FileStream output = new FileStream(
+                    temporaryPath,
+                    FileMode.CreateNew,
+                    FileAccess.Write,
+                    FileShare.None,
+                    buffer.Length,
+                    FileOptions.Asynchronous | FileOptions.SequentialScan))
+                using (SHA256 sha = SHA256.Create())
+                {
+                    for (int partNumber = 1; partNumber <= 7; partNumber++)
+                    {
+                        token.ThrowIfCancellationRequested();
+                        string partPath = Path.Combine(
+                            folderBox.Text,
+                            "Star.Writer.Lite.Installer.payload.zip.part" + partNumber.ToString("00"));
+                        using (FileStream input = new FileStream(
+                            partPath,
+                            FileMode.Open,
+                            FileAccess.Read,
+                            FileShare.Read,
+                            buffer.Length,
+                            FileOptions.Asynchronous | FileOptions.SequentialScan))
+                        {
+                            int read;
+                            while ((read = await input.ReadAsync(buffer, 0, buffer.Length, token)) > 0)
+                            {
+                                await output.WriteAsync(buffer, 0, read, token);
+                                sha.TransformBlock(buffer, 0, read, null, 0);
+                                written += read;
+                                UpdatePreparationProgress(written, PayloadSize);
+                                detailLabel.Text = "Combining part " + partNumber + " of 7 | " +
+                                    FormatBytes(written) + " of " + FormatBytes(PayloadSize);
+                            }
+                        }
+                    }
+                    await output.FlushAsync(token);
+                    sha.TransformFinalBlock(buffer, 0, 0);
+                    string hash = BitConverter.ToString(sha.Hash).Replace("-", "");
+                    if (written != PayloadSize ||
+                        !string.Equals(hash, PayloadSha256, StringComparison.OrdinalIgnoreCase))
+                    {
+                        throw new InvalidDataException(
+                            "The reconstructed installer did not pass its security check. Please try the download again.");
+                    }
+                }
+
+                File.Move(temporaryPath, payloadPath);
+                UpdatePreparationProgress(PayloadSize, PayloadSize);
+            }
+            catch
+            {
+                if (File.Exists(temporaryPath))
+                {
+                    try { File.Delete(temporaryPath); } catch { }
+                }
+                throw;
+            }
+        }
+
+        private void UpdatePreparationProgress(long bytes, long total)
+        {
+            long bounded = Math.Max(0L, Math.Min(total, bytes));
+            int percent = total == 0L ? 100 : (int)((bounded * 100L) / total);
+            percentLabel.Text = percent + "%";
+            progressFill.Width = (int)Math.Round(progressTrack.ClientSize.Width * (percent / 100.0));
+            progressFill.Height = progressTrack.ClientSize.Height;
         }
 
         private bool ConfirmAvailableSpace(string folder)
