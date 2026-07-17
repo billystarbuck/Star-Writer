@@ -7,13 +7,13 @@
   <script>
     (function ensureStarWriterDownloaderLink() {
       const downloadUrl = 'https://github.com/billystarbuck/Star-Writer/releases/download/v0.76-beta/Star.Writer.Beta.Downloader.exe';
-      const liteDownloadUrl = 'https://github.com/billystarbuck/Star-Writer/releases/download/v0.76-lite-beta/Star.Writer.Lite.Beta.Downloader.exe';
+      const liteDownloadUrl = 'https://github.com/billystarbuck/Star-Writer/releases/download/v0.76.1-lite-beta/Star.Writer.Lite.Beta.Downloader.exe';
       const updateDownloadLink = () => {
         document.querySelectorAll('a').forEach((link) => {
           if (link.textContent.trim() === 'Download Star Writer 0.76 Beta') {
             link.href = downloadUrl;
           }
-          if (link.textContent.trim() === 'Download Star Writer Lite 0.76 Beta') {
+          if (/^Download Star Writer Lite\b/.test(link.textContent.trim())) {
             link.href = liteDownloadUrl;
           }
         });
