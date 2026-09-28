@@ -1,0 +1,272 @@
+// Lumastroke feature catalog: the single source for the build-plan icons and tables.
+// mode: N = in Normal mode, S = simplified in Normal mode, A = Advanced only
+// from: R = Rebelle, S = SAI, C = Clip Studio Paint EX, M = Moho Pro, L = Lumastroke original
+
+export const SECTIONS = [
+  {
+    id: 'core', title: 'The Studio — modes & workspaces', color: '#9A7BD0',
+    intro: 'How Lumastroke is organized: one calm Normal mode, one complete Advanced mode, and six workspaces that all share a single project file.',
+    groups: [
+      ['Modes', [
+        ['toggle', 'Normal / Advanced toggle', 'One switch, always in the top center. It changes how much UI you see but never changes your artwork.', 'L', 'N'],
+        ['brush', 'Normal mode studio', 'A full-screen canvas, five tools, Size and Opacity sliders, and the Quick Dock. Easy to learn in minutes.', 'L', 'N'],
+        ['sliders', 'Advanced mode workshop', 'Menu bar, docked panels, tool grid and every setting. Powerful, and allowed to feel busy.', 'L', 'A'],
+        ['recent', 'Quick Dock', 'Recent brushes, color history, the wet-paint meter, and one-tap mic and camera.', 'L', 'N'],
+        ['mochi', 'Mochi the guide', 'The mascot gives tips on first use, cheers when exports finish, and can be switched off.', 'L', 'N'],
+      ]],
+      ['Workspaces (Advanced tab strip)', [
+        ['brush', 'Paint workspace', 'Illustration and realistic media: brushes, color, mixer, layers and paint physics.', 'L', 'A'],
+        ['pen', 'Ink & Comic workspace', 'Line art, manga and webtoon: pages, panels, balloons, tones, rulers and 3D poses.', 'L', 'A'],
+        ['film', 'Animate workspace', 'Frame-by-frame animation: timeline, X-sheet, onion skin, light table, camera and audio.', 'L', 'A'],
+        ['bone', 'Rig & Motion workspace', 'Bone-rigged animation: bones, Smart Bones, switch layers, graph editor and physics.', 'L', 'A'],
+        ['cam', 'Capture workspace', 'Camera, voice, scanning and face tracking for reference and performance.', 'L', 'A'],
+        ['share', 'Share workspace', 'Export, print preparation, time-lapse and the render queue.', 'L', 'A'],
+        ['layers', 'One .LUMA project file', 'Paint, pages, frames, rigs, audio and clips all live in one file, so switching workspaces never needs an export.', 'L', 'N'],
+      ]],
+    ],
+  },
+  {
+    id: 'brushes', title: 'Brushes & the brush engine', color: '#FF5E8A',
+    intro: 'SAI-level precision with Rebelle-level realism and Clip Studio-level variety.',
+    groups: [
+      ['Brush families', [
+        ['pencil', 'Pen, pencil, marker, airbrush', 'Clean, fast, anti-aliased basics for sketching and line art.', 'SC', 'N'],
+        ['droplets', 'Watercolor, oil, acrylic, gouache', 'Wet media that behave like real paint on real paper.', 'R', 'N'],
+        ['feather', 'Ink, pastel, charcoal, crayon', 'Dry and ink media with texture that reacts to the paper grain.', 'RC', 'N'],
+        ['bristle', 'Bristle brushes', 'Every hair of the brush is simulated for lifelike oil and acrylic strokes.', 'R', 'N'],
+        ['smudge', 'Blur, smudge, blend', 'Soften and push color around, SAI style.', 'SC', 'N'],
+        ['stamp', 'Stamp & dual brushes', 'Sparkles, flowers, hair, lace, foliage and other decoration brushes.', 'C', 'N'],
+      ]],
+      ['Control & feel', [
+        ['blend', 'Blending / Dilution / Persistence', 'SAI\'s color pickup model. Normal mode shows one "Blend" slider.', 'S', 'S'],
+        ['stabilizer', 'Stabilizer S-1 … S-15', 'Smooths shaky lines, with speed-based and post-correction modes.', 'SC', 'S'],
+        ['gauge', 'Pressure / tilt / rotation curves', 'A curve editor for any brush setting, set per pen device.', 'SCR', 'A'],
+        ['tip', 'Brush tips', 'Round, flat, filbert, fan, rigger or a custom image tip.', 'RC', 'A'],
+        ['texture', 'Brush texture', 'Paper grain per brush, with strength and scale.', 'SRC', 'A'],
+        ['shapes', 'Smart Shape', 'Hold at the end of a stroke to snap it into a clean line, curve or ellipse.', 'C', 'N'],
+        ['expand', 'Huge brushes', 'Brushes up to 3,000 px, with a fast preview mode.', 'RC', 'A'],
+        ['recent', 'Recent & favorite brushes', 'Your go-to brushes, always one tap away in the Quick Dock.', 'R', 'N'],
+        ['wand', 'Brush Studio', 'Build and tune brushes on a test pad, with side-by-side A/B comparison.', 'L', 'S'],
+        ['import', 'Brush import', 'Bring in .abr, .sut, .brushset and .kpp brushes (each format needs a check first).', 'L', 'N'],
+      ]],
+    ],
+  },
+  {
+    id: 'physics', title: 'Real paint & physics', color: '#5EC8FF',
+    intro: 'Rebelle-style wet-media simulation. This is the "wow" feature that makes Lumastroke paintings feel real.',
+    groups: [
+      ['Wet media', [
+        ['droplets', 'Watercolor simulation', 'Diffusion, bleeding, backruns, blooms, granulation and edge darkening.', 'R', 'N'],
+        ['drop', 'Wet-on-wet / wet-on-dry', 'Soft blends on wet paper and crisp edges on dry paper, automatically.', 'R', 'N'],
+        ['sun', 'Dry / Wet all', 'Dry the whole canvas instantly, or re-wet it to keep blending.', 'R', 'N'],
+        ['timer', 'Drying speed', 'Choose how long paint stays wet, from instant to never.', 'R', 'S'],
+        ['tilt', 'Canvas tilt', 'Tilt the paper so drips and runs follow gravity.', 'R', 'S'],
+        ['wind', 'Blow tool', 'Blow wet paint across the canvas like a straw.', 'R', 'N'],
+        ['eye', 'Show wet areas', 'Overlay that highlights paint that is still wet.', 'R', 'A'],
+      ]],
+      ['Pigment, paper & light', [
+        ['flask', 'Pigment mixing', 'Real paint mixing: blue and yellow make green, not gray.', 'R', 'N'],
+        ['palette', 'Mixing palette', 'A paint palette where you mix colors, then pick up the mixed result.', 'R', 'N'],
+        ['mountain', 'Impasto / thickness', 'Thick oil and acrylic that builds up physical relief.', 'R', 'S'],
+        ['bulb', 'Paint lighting (RealShader-style)', 'Light direction and soft shadows over thick paint.', 'R', 'A'],
+        ['paper', 'Paper & canvas library', 'Cold press, hot press, rough, canvas, kraft and toned papers, or import your own.', 'R', 'N'],
+        ['shield', 'Masking fluid', 'A layer that resists paint and peels off later.', 'R', 'S'],
+        ['scissors', 'Stencils & tape', 'Moveable hold-down masks for clean edges.', 'R', 'A'],
+        ['film', 'Wet paint on every frame', 'Real paint physics that works inside animation frames.', 'L', 'N'],
+      ]],
+    ],
+  },
+  {
+    id: 'color', title: 'Color', color: '#FFC56B',
+    intro: 'Friendly color picking in Normal mode, and professional color control in Advanced mode.',
+    groups: [
+      ['Pick & manage', [
+        ['wheel', 'Color disc & wheel', 'Procreate-style disc, HSV wheel, and RGB/HSL/CMYK sliders with hex input.', 'SC', 'N'],
+        ['note', 'Scratch pad', 'A doodle area for testing colors and strokes.', 'S', 'A'],
+        ['palette', 'Swatches & palettes', 'Build palettes, import from an image, and use .ase/.aco files.', 'CL', 'N'],
+        ['harmony', 'Color harmony', 'Complementary, triad and analogous suggestions.', 'C', 'S'],
+        ['dropper', 'Eyedropper', 'Hold on the canvas to pick a color, including the mixed color.', 'SC', 'N'],
+        ['recent', 'Color history', 'Recently used colors in the panel and the Quick Dock.', 'SC', 'N'],
+        ['contrast', 'Values check', 'Greyscale toggle for checking light and dark values.', 'S', 'N'],
+        ['gradient', 'Gradients & gradient maps', 'Editable gradient sets, available as a filter or a layer.', 'RC', 'S'],
+        ['cmyk', 'Color management', 'sRGB, Display P3 and CMYK soft-proofing for print.', 'SC', 'A'],
+      ]],
+    ],
+  },
+  {
+    id: 'layers', title: 'Layers, selection & transform', color: '#B9A8FF',
+    intro: 'Layer and editing tools shared by every workspace.',
+    groups: [
+      ['Layers', [
+        ['layers', 'Layer types', 'Raster, vector, linework, paper, masking, tone, text, balloon, panel, 3D, audio, video and camera layers.', 'SCRM', 'S'],
+        ['folder', 'Folders', 'Group layers, and nest groups inside groups.', 'SC', 'N'],
+        ['clip', 'Clipping & alpha lock', 'Paint only inside the layer below, or lock transparent pixels.', 'SC', 'N'],
+        ['mask', 'Layer masks', 'Hide and show parts of a layer without erasing.', 'C', 'S'],
+        ['blend', 'Blend modes', '28 modes plus Add (Glow), Luminosity and Binary.', 'SC', 'S'],
+        ['sliders', 'Correction layers', 'Non-destructive Levels, Curves, HSL, Gradient Map and more.', 'CR', 'A'],
+        ['frame', 'Layer effects', 'Border outline, watercolor edge and tone effects.', 'C', 'A'],
+        ['tag', 'Layer color & labels', 'Color-code layers, which helps with animation clean-up.', 'C', 'A'],
+      ]],
+      ['Select & transform', [
+        ['select', 'Selection tools', 'Lasso, rectangle, ellipse, magic wand, selection pen and quick mask.', 'SC', 'N'],
+        ['launcher', 'Selection action bar', 'A floating bar of actions that appears under your selection.', 'C', 'N'],
+        ['move', 'Transform', 'Move, scale, rotate, flip, distort and perspective.', 'SC', 'N'],
+        ['mesh', 'Mesh transform', 'Bend an image with a grid of points.', 'C', 'S'],
+        ['pin', 'Puppet warp', 'Pin points and bend limbs and poses like a marionette.', 'C', 'S'],
+        ['swirl', 'Liquify', 'Push, twirl, pinch and bloat pixels.', 'C', 'S'],
+        ['expand', 'Smooth scaling', 'High-quality resizing without blurry edges.', 'R', 'A'],
+        ['undo', 'History & snapshots', 'Unlimited undo, a history panel and named snapshots.', 'SC', 'N'],
+      ]],
+    ],
+  },
+  {
+    id: 'ink', title: 'Ink & Comic', color: '#FF9A5C',
+    intro: 'Clip Studio EX-class tools for manga, comics and webtoons.',
+    groups: [
+      ['Line art', [
+        ['spline', 'Linework layers', 'Strokes stay editable: move points and change line weight after drawing.', 'S', 'S'],
+        ['eraser', 'Vector eraser', 'Erase a line back to where it crosses another line.', 'C', 'A'],
+        ['pen', 'Line width fix & pinch ends', 'Thicken, thin and taper lines after you draw them.', 'C', 'A'],
+        ['scan', 'Line extraction', 'Turn a photo or scanned sketch into clean line art.', 'C', 'S'],
+        ['fill', 'Smart fill', 'Fill using other layers as a guide, close gaps, and lasso fill.', 'SC', 'N'],
+        ['sparkle', 'Colorize from hints', 'Scribble hint colors and flats fill in automatically.', 'C', 'S'],
+      ]],
+      ['Comics & manga', [
+        ['book', 'Multi-page projects', 'A page manager with spreads and page reordering.', 'C', 'S'],
+        ['script', 'Story editor', 'Write the script once and it flows into the speech balloons.', 'C', 'A'],
+        ['panels', 'Panel cutting', 'Cut and divide panels with gutters, or start from a template.', 'C', 'S'],
+        ['balloon', 'Speech balloons & tails', 'Round, spiky, thought and flash balloons.', 'C', 'N'],
+        ['zap', 'SFX lettering', 'Big, bold sound-effect text such as WHOOSH and DOKI DOKI.', 'C', 'N'],
+        ['tone', 'Screen tones', 'Dot, line and noise tones, plus gradient tones.', 'C', 'S'],
+        ['phone', 'Webtoon canvas', 'Tall scrolling canvas with automatic splitting for upload.', 'C', 'N'],
+        ['crop', 'Bleed & trim', 'Print-safe guides and presets for manga, US comic and A4.', 'C', 'A'],
+        ['users', 'Team pages', 'Assign pages to people and leave review notes.', 'CL', 'A'],
+      ]],
+      ['Drawing assists', [
+        ['perspective', 'Perspective rulers', 'One-, two- and three-point perspective grids that lines snap to.', 'SC', 'S'],
+        ['symmetry', 'Symmetry', 'Mirror, radial and kaleidoscope drawing.', 'RC', 'N'],
+        ['focus', 'Speed & focus lines', 'Instant manga action and focus lines.', 'C', 'N'],
+        ['rings', 'Special rulers', 'Concentric, parallel and curve rulers.', 'C', 'A'],
+        ['grid', 'Grids & guides', 'Snap to a grid or to guide lines.', 'C', 'S'],
+        ['figure', '3D pose models', 'Posable figures and hands with body-shape sliders, including pose from a photo.', 'C', 'S'],
+        ['cube', '3D objects & line conversion', 'Place 3D props and backgrounds, then convert them to line art.', 'C', 'A'],
+        ['pip', 'Reference window', 'Pin an image, video or 3D model beside the canvas.', 'L', 'N'],
+      ]],
+    ],
+  },
+  {
+    id: 'animate', title: 'Animate (frame-by-frame)', color: '#8A6CFF',
+    intro: 'Traditional hand-drawn animation, with voice and video built in.',
+    groups: [
+      ['Timeline', [
+        ['timeline', 'Timeline & cels', 'Unlimited frames, organized into animation folders.', 'C', 'N'],
+        ['sheet', 'Exposure sheet (X-sheet)', 'Pro studio timing sheet view.', 'C', 'A'],
+        ['onion', 'Onion skin', 'See the frames before and after, with custom colors and counts.', 'CM', 'N'],
+        ['lamp', 'Light table', 'Trace from any frame or drawing.', 'C', 'S'],
+        ['loop', 'Holds, loops, ping-pong', 'Timing tools including hold ×2 and push frames.', 'CM', 'N'],
+        ['split', 'Auto in-between', 'Generates in-between drawings for vector lines.', 'L', 'A'],
+        ['wobble', 'Smart line boil', 'A hand-drawn "wobble" effect on still frames.', 'M', 'S'],
+      ]],
+      ['Scene, sound & video', [
+        ['aperture', '2D camera', 'Pan, zoom, rotate, shake and multiplane depth.', 'CM', 'S'],
+        ['diamond', 'Transform keyframes', 'Animate position, scale, rotation and opacity.', 'C', 'S'],
+        ['cam', 'Rotoscoping', 'Import video and draw over it frame by frame.', 'C', 'S'],
+        ['music', 'Audio layers', 'Import music and sound effects, and scrub audio as you drag.', 'CM', 'N'],
+        ['mic', 'Record voice', 'Record voice takes straight onto the timeline.', 'L', 'N'],
+        ['wave', 'Lip-sync from voice', 'Mouth shapes are matched to the words automatically.', 'ML', 'N'],
+        ['captions', 'Subtitles', 'Add captions to animations and videos.', 'C', 'S'],
+      ]],
+    ],
+  },
+  {
+    id: 'rig', title: 'Rig & Motion', color: '#4ADE80',
+    intro: 'Moho Pro-class rigged animation, so a character can move without redrawing every frame.',
+    groups: [
+      ['Rigging', [
+        ['bone', 'Bones (FK / IK)', 'A skeleton for a character, with inverse kinematics for arms and legs.', 'M', 'A'],
+        ['dial', 'Smart Bones', 'A dial bone that drives corrective poses, such as head turns and hand shapes.', 'M', 'A'],
+        ['vitruvian', 'Vitruvian Bones', 'Swap whole body setups (front, ¾ and side) on the fly.', 'M', 'A'],
+        ['link', 'Constraints', 'Angle, squash and delayed constraints for natural follow-through.', 'M', 'A'],
+        ['shuffle', 'Switch layers', 'Swap drawings for mouths, eyes and hands.', 'M', 'S'],
+        ['template', 'Rig templates', 'Ready-made rigs for chibi, bust and full-body anime characters.', 'L', 'N'],
+      ]],
+      ['Deform & motion', [
+        ['mesh', 'Meshes & image warp', 'Bend painted artwork smoothly.', 'M', 'A'],
+        ['curve', 'Curvers', 'Bend tails, hair, snakes and tentacles along a curve.', 'M', 'A'],
+        ['graph', 'Graph editor', 'Bezier, ease, bounce and elastic motion curves.', 'M', 'A'],
+        ['walk', 'Actions library', 'Reusable walk, run, blink, talk and idle cycles.', 'M', 'S'],
+        ['atom', 'Dynamics & physics', 'Follow-through, wiggle, gravity, wind and collisions.', 'M', 'S'],
+        ['particles', 'Particles', 'Sparkles, petals, rain and snow emitters.', 'M', 'A'],
+        ['flame', 'Liquid shapes', 'Organic fire, smoke and water effects.', 'M', 'A'],
+        ['orbit', '3D camera & depth', 'Layer depth, orbit and parallax.', 'M', 'A'],
+        ['smile', 'Face-tracking puppet', 'Drive a rigged character\'s face from your webcam.', 'L', 'N'],
+        ['code', 'Scripting & plug-ins', 'Automate tasks and extend Lumastroke.', 'M', 'A'],
+      ]],
+    ],
+  },
+  {
+    id: 'capture', title: 'Capture & devices', color: '#5EC8FF',
+    intro: 'Every drawing pad, microphone and camera works as a first-class creative tool.',
+    groups: [
+      ['Input devices', [
+        ['tablet', 'Pen tablets & displays', 'Wacom, XP-Pen, Huion, Apple Pencil (via Sidecar) and Surface Pen, with per-device curves.', 'L', 'N'],
+        ['gauge', 'Pressure, tilt, rotation, buttons', 'Full pen data mapped to any brush setting.', 'SCR', 'N'],
+        ['hand', 'Touch gestures', 'Two-finger undo, pinch to zoom and rotate, and hold for the eyedropper.', 'L', 'N'],
+        ['sliders', 'Dials & MIDI controllers', 'TourBox-style dials and MIDI knobs mapped to tools.', 'L', 'A'],
+        ['wifi', 'Remote control input', 'WebSocket control for live performance and installations.', 'R', 'A'],
+      ]],
+      ['Recording & reference', [
+        ['mic', 'Voice notes & takes', 'Record ideas, dialogue and sound effects.', 'L', 'N'],
+        ['cam', 'Reference video', 'Record reference clips (poses, motion) from any camera.', 'L', 'N'],
+        ['scan', 'Scan a paper sketch', 'Photograph a sketch and get clean line art.', 'CL', 'N'],
+        ['smile', 'Face & body tracking', 'Tracks face and body for rigs and pose reference.', 'L', 'S'],
+      ]],
+    ],
+  },
+  {
+    id: 'share', title: 'Files, export & sharing', color: '#FF9EBB',
+    intro: 'Opens almost anything and exports to wherever the art needs to go.',
+    groups: [
+      ['Import', [
+        ['layers', 'Native .LUMA', 'The full project: layers, wet paint state, pages, frames, rigs and audio.', 'L', 'N'],
+        ['image', 'Images', 'PSD/PSB, ORA, KRA, TIFF, PNG, JPEG, WebP, HEIC, BMP, GIF, SVG and PDF.', 'L', 'N'],
+        ['film', 'Video & audio', 'MP4, MOV, WebM, WAV, MP3 and AAC.', 'CM', 'N'],
+        ['import', 'Other apps\' files', '.procreate, .sai/.sai2, .clip and .moho are goals; each needs a legal and technical check first.', 'L', 'A'],
+      ]],
+      ['Export', [
+        ['image', 'Image export', 'PNG, JPEG, WebP, 16-bit/CMYK TIFF, layered PSD and SVG.', 'SC', 'N'],
+        ['book', 'Comic export', 'Multi-page PDF, EPUB, CBZ and webtoon strips.', 'C', 'N'],
+        ['film', 'Animation export', 'MP4, MOV with alpha, WebM, GIF, APNG, PNG sequence and sprite sheets.', 'CM', 'N'],
+        ['gamepad', 'Game & web export', 'glTF/FBX for game engines and Lottie for the web.', 'M', 'A'],
+        ['printer', 'Print scaling', 'Upscale up to 20× for large prints, plus print presets.', 'R', 'A'],
+        ['timelapse', 'Time-lapse', 'Every painting records its own process video.', 'L', 'N'],
+      ]],
+    ],
+  },
+  {
+    id: 'everyday', title: 'Everyday comfort', color: '#9A96AC',
+    intro: 'The details that make an app pleasant to use every day.',
+    groups: [
+      ['Workflow & care', [
+        ['save', 'Auto-save & versions', 'Never lose work, and roll back to any earlier version.', 'L', 'N'],
+        ['keyboard', 'Shortcuts & workspaces', 'Custom keyboard shortcuts and saved panel layouts.', 'SC', 'A'],
+        ['command', 'Command bar', 'Type to find any tool or action.', 'L', 'A'],
+        ['theme', 'Themes', 'Dark studio and warm "Paper" light theme, with adjustable UI scale.', 'L', 'N'],
+        ['chip', 'Performance', 'GPU brush engine and canvases up to 100,000 px.', 'S', 'N'],
+        ['learn', 'Lessons', 'Interactive tutorials and "What\'s this?" hover cards.', 'L', 'N'],
+        ['access', 'Accessibility', 'Screen reader labels, high-contrast theme, color-blind-safe UI and a left-hand layout.', 'L', 'N'],
+        ['heart', 'Community', 'Share brushes, palettes and workspaces with other artists.', 'L', 'S'],
+      ]],
+    ],
+  },
+];
+
+// Workspace tabs: [glyph, color, name, built for, main panels]
+export const WS = [
+  ['brush', '#FF5E8A', 'Paint', 'Illustration and realistic media', 'Brush, Color + Mixer, Layers, Paint Physics, Navigator'],
+  ['pen', '#FF9A5C', 'Ink & Comic', 'Line art, manga, webtoon', 'Pages, Story, Panels & Balloons, Tones, Vector, 3D Pose, Rulers'],
+  ['film', '#8A6CFF', 'Animate', 'Frame-by-frame animation', 'Timeline / X-sheet, Onion skin, Light table, Camera, Audio'],
+  ['bone', '#4ADE80', 'Rig & Motion', 'Bone-rigged animation', 'Bones, Smart Bones, Switch, Actions, Graph editor, Physics'],
+  ['cam', '#5EC8FF', 'Capture', 'Reference and recording', 'Camera, Voice, Scan, Face tracking, Devices'],
+  ['share', '#FF9EBB', 'Share', 'Export and print', 'Formats, Print prep, Time-lapse, Render queue'],
+];
