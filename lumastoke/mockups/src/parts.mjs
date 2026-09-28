@@ -61,14 +61,37 @@ const P = {
 export const ic = (n, s = 20, sw = 1.7, fill = false) =>
   `<svg class="i" viewBox="0 0 24 24" width="${s}" height="${s}" fill="${fill ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"><path d="${P[n]}"/></svg>`;
 
-// Lumastoke logo mark: a luminous brush-drop.
-export const logo = (s = 28) => `
-<svg width="${s}" height="${s}" viewBox="0 0 32 32">
-  <defs><linearGradient id="lg${s}" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#FFC56B"/><stop offset=".5" stop-color="#FF5E8A"/><stop offset="1" stop-color="#8A6CFF"/></linearGradient></defs>
-  <path d="M16 2c5 6 11 11 11 18a11 11 0 0 1-22 0C5 13 11 8 16 2z" fill="url(#lg${s})"/>
-  <path d="M11 21c2 3 7 3 9-1" stroke="#fff" stroke-opacity=".85" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+// Lumastoke logo mark: Mochi popping out of a paint splash (concept 06).
+const kira = (cx, cy, r, fill) =>
+  `<path d="M${cx} ${cy - r} Q${cx} ${cy} ${cx + r} ${cy} Q${cx} ${cy} ${cx} ${cy + r} Q${cx} ${cy} ${cx - r} ${cy} Q${cx} ${cy} ${cx} ${cy - r}Z" fill="${fill}"/>`;
+let logoId = 0;
+export const logo = (s = 28, sparkles = true) => {
+  const p = 'mo' + logoId++;
+  return `<svg width="${s}" height="${s}" viewBox="0 0 120 120" style="flex:none;display:block">
+  <defs><linearGradient id="${p}s" x1="0" y1="0" x2="1" y2=".4"><stop offset="0" stop-color="#8A6CFF"/><stop offset="1" stop-color="#5EC8FF"/></linearGradient>
+  <linearGradient id="${p}b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD0DC"/><stop offset="1" stop-color="#FF9EBB"/></linearGradient></defs>
+  <path d="M88 30 L106 8" stroke="#FFD36B" stroke-width="8" stroke-linecap="round"/><path d="M85 34 L90 27" stroke="#3A1F4A" stroke-width="5" stroke-linecap="round"/>
+  <g fill="url(#${p}b)" stroke="url(#${p}b)" stroke-width="6" stroke-linejoin="round">
+    <path d="M34 46 L30 18 L52 34Z"/><path d="M86 46 L90 18 L68 34Z"/><ellipse cx="60" cy="64" rx="34" ry="30"/>
+  </g>
+  <ellipse cx="48" cy="60" rx="5.5" ry="7.5" fill="#2B1F4F"/><ellipse cx="72" cy="60" rx="5.5" ry="7.5" fill="#2B1F4F"/>
+  <circle cx="50" cy="57" r="2.2" fill="#fff"/><circle cx="74" cy="57" r="2.2" fill="#fff"/>
+  <ellipse cx="38" cy="70" rx="6" ry="3.5" fill="#FF4F7B" opacity=".45"/><ellipse cx="82" cy="70" rx="6" ry="3.5" fill="#FF4F7B" opacity=".45"/>
+  <ellipse cx="60" cy="71" rx="3.5" ry="4" fill="#5A1F3A"/>
+  <path d="M6 88 C 4 72, 26 70, 36 76 C 44 70, 76 70, 84 76 C 96 68, 116 74, 112 88 C 118 96, 110 108, 98 104 C 94 114, 80 114, 76 106 C 68 114, 52 114, 48 104 C 36 112, 20 108, 22 98 C 10 100, 6 96, 6 88Z" fill="url(#${p}s)"/>
+  <circle cx="42" cy="80" r="6.5" fill="#FFD0DC"/><circle cx="78" cy="80" r="6.5" fill="#FFD0DC"/>
+  ${sparkles ? kira(18, 40, 10, '#FFD36B') + kira(110, 52, 7, '#FF5E9C') : ''}
 </svg>`;
+};
+
+// Advanced-mode workspace switcher.
+export const workspaces = ['Paint', 'Ink & Comic', 'Animate', 'Rig & Motion', 'Capture', 'Share'];
+export const wsTabs = (active) => `<div class="ws">${workspaces.map(w => `<span class="${w === active ? 'on' : ''}">${w}</span>`).join('')}</div>`;
+
+// Advanced-mode menu bar, shared by every Advanced workspace.
+export const menus = ['File', 'Edit', 'Canvas', 'Layer', 'Select', 'Paint', 'Filter', 'Comic', 'Animate', 'Rig', 'Capture', 'View', 'Window', 'Help'];
+export const menuBar = (active) => `<div class="menu">${logo(24, false)}${menus.map(m => `<span class="m">${m}</span>`).join('')}
+  <div class="r">${wsTabs(active)}${toggle(true)}</div></div>`;
 
 // Shared SVG filters that give painted shapes a watercolor / paper feel.
 export const filters = `
@@ -228,5 +251,13 @@ body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--b
 .lbl{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .mono{font-family:'JetBrains Mono',monospace}
 .stroke{display:block}
+.menu{position:absolute;left:0;right:0;top:0;height:40px;display:flex;align-items:center;padding:0 12px;gap:0;background:#131219;border-bottom:1px solid var(--line);font-size:12px}
+.menu .m{padding:6px 8px;border-radius:7px;color:#c9c6d8;font-weight:500}
+.menu .m:first-of-type{margin-left:8px}
+.menu .r{margin-left:auto;display:flex;align-items:center;gap:12px}
+.ws{display:flex;gap:2px;padding:3px;border-radius:10px;background:var(--field);border:1px solid var(--line)}
+.ws span{padding:5px 11px;border-radius:7px;font-weight:600;color:var(--muted);font-size:11.5px}
+.ws span.on{background:var(--solid2);color:var(--text);box-shadow:inset 0 -2px 0 var(--a2),0 2px 8px rgba(0,0,0,.3)}
+.mode{font-size:11.5px}.menu .mode span{padding:5px 11px}
 ${css}
 </style></head><body>${filters}${body}</body></html>`;

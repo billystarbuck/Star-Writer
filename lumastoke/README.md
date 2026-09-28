@@ -1,4 +1,6 @@
-# Lumastoke — UI mockups (round 1)
+# Lumastoke — UI mockups
+
+The logo is **Mochi Splash** (concept 06). The full feature list is in [`FEATURES.md`](FEATURES.md).
 
 Lumastoke is a digital painting and animation app. It pairs **Procreate's simplicity**
 with **Rebelle-style realistic paint** and **PaintTool SAI's depth of tools**. It has two
@@ -14,6 +16,9 @@ All mockups are 1920×1200 PNGs in [`mockups/`](mockups/).
 | 04 | Animation and capture | Frame-by-frame animation with onion skins. A timeline with a voice track, auto lip-sync phoneme tags, a held background, and a camera-reference track. A live reference-capture window with face tracking. |
 | 05 | Gallery, import and export | A home gallery with Start / Animate / Capture / Open cards and a connected-devices strip (tablets, mic, camera). An export sheet covering image, animation, project, print and time-lapse formats, plus the list of importable files. |
 | 06 | Normal studio (Paper light theme) | Screen 01 in a warm light theme. |
+| 07 | Advanced: Ink & Comic | Clip Studio-style manga page tools. A page manager and story editor on the left. Vector G-pen, panel cut, balloons, SFX lettering, screen tones, speed and focus lines, perspective rulers, and a 3D pose mannequin. Bleed and trim guides, plus a floating action bar under the selection. |
+| 08 | Advanced: Rig & Motion | Moho-style rigging on Mochi. FK/IK bones, a Smart Bone dial with corrective poses, a curver on the tail, and dynamics on the ears. An actions library, switch-layer mouth shapes, a graph editor with a lip-sync track, and face tracking from the webcam. |
+| 09 | Feature map | Every feature from Rebelle, SAI, Clip Studio EX and Moho Pro, sorted into the six workspaces, tagged by source, and marked Normal or Advanced. |
 
 ## Design language
 - **Canvas first.** The chrome is small, floating "glass" panels over a deep ink background. The artwork is the brightest thing on screen.

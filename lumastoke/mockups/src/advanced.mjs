@@ -1,21 +1,17 @@
-import { ic, logo, art, toggle, base } from './parts.mjs';
+import { ic, art, menuBar, base } from './parts.mjs';
 
-const css = `
+export const advCss = `
 body{background:#0e0d14;font-size:12px}
-.menu{position:absolute;left:0;right:0;top:0;height:36px;display:flex;align-items:center;padding:0 12px;gap:2px;background:#131219;border-bottom:1px solid var(--line)}
-.menu .m{padding:6px 10px;border-radius:7px;color:#c9c6d8;font-weight:500}
-.menu .m:first-of-type{margin-left:8px}
-.menu .r{margin-left:auto;display:flex;align-items:center;gap:12px}
-.opts{position:absolute;left:0;right:0;top:36px;height:46px;display:flex;align-items:center;padding:0 12px;gap:14px;background:#15141c;border-bottom:1px solid var(--line)}
+.opts{position:absolute;left:0;right:0;top:40px;height:44px;display:flex;align-items:center;padding:0 12px;gap:14px;background:#15141c;border-bottom:1px solid var(--line)}
 .o{display:flex;align-items:center;gap:7px;color:var(--muted);font-weight:500;white-space:nowrap}
 .o b{color:var(--text);font-weight:600}
 .f{height:28px;padding:0 9px;border-radius:7px;background:var(--field);display:flex;align-items:center;gap:6px;color:var(--text);font-weight:600;border:1px solid var(--line)}
 .vsep{width:1px;height:24px;background:var(--line2)}
 .tg{padding:5px 9px;border-radius:7px;background:var(--field);color:var(--muted);font-weight:600;border:1px solid var(--line)}
 .tg.on{color:#1a1320;background:var(--grad);border-color:transparent}
-.dockL{position:absolute;left:0;top:82px;bottom:28px;width:300px;background:#15141c;border-right:1px solid var(--line);display:flex;flex-direction:column}
-.dockT{position:absolute;left:300px;top:82px;bottom:28px;width:214px;background:#131219;border-right:1px solid var(--line);display:flex;flex-direction:column}
-.dockR{position:absolute;right:0;top:82px;bottom:28px;width:330px;background:#15141c;border-left:1px solid var(--line);display:flex;flex-direction:column}
+.dockL{position:absolute;left:0;top:84px;bottom:28px;width:300px;background:#15141c;border-right:1px solid var(--line);display:flex;flex-direction:column}
+.dockT{position:absolute;left:300px;top:84px;bottom:28px;width:214px;background:#131219;border-right:1px solid var(--line);display:flex;flex-direction:column}
+.dockR{position:absolute;right:0;top:84px;bottom:28px;width:330px;background:#15141c;border-left:1px solid var(--line);display:flex;flex-direction:column}
 .ph{display:flex;align-items:center;justify-content:space-between;height:32px;padding:0 12px;border-bottom:1px solid var(--line);background:#1a1922}
 .ph .t{display:flex;gap:14px}.ph .t span{font-weight:600;color:var(--muted);font-size:11.5px}.ph .t span.on{color:var(--text)}
 .ph .t span.on:after{content:'';display:block;height:2px;border-radius:2px;background:var(--grad);margin-top:6px;margin-bottom:-8px}
@@ -52,7 +48,7 @@ body{background:#0e0d14;font-size:12px}
 .pr .tr em{position:absolute;right:6px;top:1px;font-style:normal;color:#fff;font-family:'JetBrains Mono';font-size:10px}
 .pr.wet .tr i{background:linear-gradient(90deg,rgba(58,160,255,.5),rgba(94,200,255,.7))}
 .sel{height:24px;border-radius:5px;background:#1c1b24;display:flex;align-items:center;justify-content:space-between;padding:0 8px;color:var(--text);flex:1}
-.stage{position:absolute;left:514px;right:330px;top:82px;bottom:28px;background:#0b0a10}
+.stage{position:absolute;left:514px;right:330px;top:84px;bottom:28px;background:#0b0a10}
 .rul{position:absolute;background:#15141c;color:var(--dim);font-size:9px;font-family:'JetBrains Mono'}
 .rul.h{left:18px;right:0;top:0;height:18px;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.14) 0 1px,transparent 1px 20px)}
 .rul.v{left:0;top:18px;bottom:0;width:18px;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.14) 0 1px,transparent 1px 20px)}
@@ -84,7 +80,6 @@ body{background:#0e0d14;font-size:12px}
 .dot{width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;margin-right:6px}
 `;
 
-const menu = ['File', 'Edit', 'Canvas', 'Layer', 'Select', 'Filter', 'Paint', 'Animate', 'Capture', 'View', 'Window', 'Help'];
 const tools = [
   ['Pen', '#d9d6e6'], ['Pencil', '#9a96ac'], ['Airbrush', '#ff7ab8'], ['Brush', '#c9658f'],
   ['WaterColor', '#9a7bd0', 1], ['Oil', '#e08a5a'], ['Acrylic', '#ff9a7a'], ['Gouache', '#f2c46b'],
@@ -120,9 +115,7 @@ const thumb = (k) => ({
 }[k] || '');
 
 const body = `
-<div class="menu">${logo(20)}${menu.map(m => `<span class="m">${m}</span>`).join('')}
-  <div class="r"><span style="color:var(--muted)">Evening Tide.luma — 4096×3072 · 300 dpi · Display P3</span>${toggle(true)}</div>
-</div>
+${menuBar('Paint')}
 <div class="opts">
   <div class="f" style="gap:8px"><i style="width:10px;height:10px;border-radius:2px;background:#9a7bd0;display:block"></i>WaterColor · Wet Wash ${ic('chev', 12)}</div>
   <div class="vsep"></div>
@@ -230,4 +223,4 @@ const body = `
 </div>
 `;
 
-export const advanced = () => base('Lumastoke — Advanced', css, body);
+export const advanced = () => base('Lumastoke — Advanced', advCss, body);

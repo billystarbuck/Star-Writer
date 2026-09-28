@@ -9,6 +9,9 @@ import { library } from './library.mjs';
 import { advanced } from './advanced.mjs';
 import { animation } from './animation.mjs';
 import { gallery } from './gallery.mjs';
+import { comic } from './comic.mjs';
+import { rig } from './rig.mjs';
+import { featureMap } from './map.mjs';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
@@ -24,6 +27,9 @@ const pages = {
   '04-animation-and-capture': animation,
   '05-gallery-import-export': gallery,
   '06-normal-studio-paper-light': () => normal('light'),
+  '07-advanced-ink-and-comic': comic,
+  '08-advanced-rig-and-motion': rig,
+  '09-feature-map': featureMap,
 };
 
 const want = process.argv.slice(2);
@@ -35,7 +41,7 @@ for (const [name, make] of Object.entries(pages)) {
   writeFileSync(file, make());
   await page.goto('file://' + file, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
-  await page.screenshot({ path: join(out, `${name}.png`) });
+  await page.screenshot({ path: join(out, `${name}.png`), fullPage: true });
   console.log('rendered', name);
 }
 await browser.close();
