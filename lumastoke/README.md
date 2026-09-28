@@ -26,3 +26,18 @@ All mockups are 1920×1200 PNGs in [`mockups/`](mockups/).
 NODE_PATH=$(npm root -g) node lumastoke/mockups/src/build.mjs
 ```
 This needs Playwright and Chromium. The HTML sources are in `mockups/src/`.
+
+# Logo and slogan concepts (round 1)
+
+There are six directions in [`branding/`](branding/). `00-logo-concepts-overview.png` shows them all side by side:
+
+| # | Concept | Slogan |
+|---|---------|--------|
+| 01 | Spark Drop: a paint drop with an anime "kira" sparkle | Paint the light. Bring it to life. |
+| 02 | Neko Brush: a happy paint-cat face with a brush-stroke tail | Draw it. Paint it. Make it move. |
+| 03 | Star Stroke: a brush stroke that becomes a smiling shooting star | Every frame, a spark. |
+| 04 | Kira Eye: a sparkling anime eye with a gradient iris | See it. Draw it. Watch it move. |
+| 05 | Film Ribbon: an "L" drawn as animation film | Where sketches come alive. |
+| 06 | Mochi Splash: a kawaii mascot popping out of a paint splash | Your art, alive. |
+
+To regenerate the images: `NODE_PATH=$(npm root -g) node lumastoke/branding/src/build.mjs`
